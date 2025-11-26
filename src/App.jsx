@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import copyIcon from "./assets/copy-solid-full.svg";
 import githubIcon from "./assets/github-brands-solid-full.svg";
+import Eazul from "./assets/Eazul.png";
+import pkweb from "./assets/pkweb.png";
+import warrunning from "./assets/warrunning.png";
+import cvdiego from "./assets/CVDIEGOV2025.pdf";
 
 const SECTIONS = [
   { id: "inicio", label: "INICIO" },
@@ -14,42 +18,34 @@ const PROJECTS = [
     id: "estacionamiento-azul",
     title: "Estacionamiento Azul",
     description:
-      "App móvil para gestionar plazas de parking, tiempos y ocupación en tiempo real.",
-    image: "https://via.placeholder.com/480x270?text=Estacionamiento+Azul",
-    tags: ["Flutter", "Firebase", "Mobile"],
-    github: "https://github.com/tu-usuario/estacionamiento-azul",
-    demo: "#", // más adelante pones el link real
+      "App web para gestionar plazas de parking, tiempos y ocupación en tiempo real, adaptada para moviles",
+    image: Eazul,
+    tags: ["Flutter", "Dart", "Firebase", "Mobile"],
   },
   {
     id: "parking-test",
-    title: "Parking Test",
+    title: "Parking Web",
     description:
-      "Versión de pruebas del sistema de parking con nuevas features y UI experimental.",
-    image: "https://via.placeholder.com/480x270?text=Parking+Test",
-    tags: ["Flutter", "Firestore"],
-    github: "https://github.com/tu-usuario/parking-test",
-    demo: "#",
+      "Version web de Estacionamiento Azul, adaptada para moviles y cambiandole algunas cosas",
+    image: pkweb,
+    tags: ["Html", "Firestore", "CSS", "JavaScript"],
+    github: "https://github.com/diegovalentini/parking-web",
   },
   {
-    id: "portfolio-web",
-    title: "Portfolio Web",
+    id: "War-Running",
+    title: "WarRunning",
     description:
-      "Este mismo portfolio, construido con React y Vite, con estilo neon y sidebar fija.",
-    image: "https://via.placeholder.com/480x270?text=Portfolio+Web",
-    tags: ["React", "Vite", "HTML", "CSS"],
-    github: "https://github.com/tu-usuario/portfolio-web",
-    demo: "#",
+      "Es una App de running, con la diferencia que cuando completas un recorrido lo conquistas, esta en desarrollo todavia",
+    image: warrunning,
+    tags: ["Flutter", "Dart", "Firebase", "Google APIS"],
   },
 ];
 
 function App() {
   const email = "diego_valentini16@hotmail.com";
-
   const [copied, setCopied] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
-
   const sectionRefs = useRef({});
-
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText(email);
@@ -60,14 +56,80 @@ function App() {
     }
   };
 
-  const handleNavClick = (id) => {
-    const el = sectionRefs.current[id];
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+const handleNavClick = (id) => {
+  const el = sectionRefs.current[id];
+
+  if (id === "inicio") {
+    // Ir al principio de la página
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+
+  if (el) {
+    const y =
+      el.getBoundingClientRect().top + window.pageYOffset - 80; // margen arriba
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+};
+
+// Efecto de máquina de escribir en bucle con varias frases
+useEffect(() => {
+  const element = document.getElementById("typing-text");
+  if (!element) return;
+
+  const phrases = [
+    "EN LA RUTA DE SER UN DESARROLLADOR",
+    "EN LA RUTA DE SER UN PROGRAMADOR",
+    "EN LA RUTA DE SER UN DESARROLLADOR TRAINEE",
+    "EN LA RUTA DE SER UN FREELANCER",
+  ];
+
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  const typeSpeed = 80;     // velocidad al escribir
+  const deleteSpeed = 50;   // velocidad al borrar
+  const pauseEnd = 1200;    // pausa al terminar de escribir
+  const pauseStart = 500;   // pausa antes de empezar la siguiente frase
+
+  let timeoutId;
+
+  const type = () => {
+    const current = phrases[phraseIndex];
+
+    if (!deleting) {
+      charIndex++;
+      element.textContent = current.slice(0, charIndex);
+
+      if (charIndex === current.length) {
+        deleting = true;
+        timeoutId = setTimeout(type, pauseEnd);
+        return;
+      }
+    } else {
+      charIndex--;
+      element.textContent = current.slice(0, charIndex);
+
+      if (charIndex === 0) {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length; 
+        timeoutId = setTimeout(type, pauseStart);
+        return;
+      }
     }
+
+    timeoutId = setTimeout(type, deleting ? deleteSpeed : typeSpeed);
   };
 
-  // Observa qué sección está en pantalla
+  type();
+
+  return () => {
+    if (timeoutId) clearTimeout(timeoutId);
+  };
+}, []);
+
+  // Observar qué sección está en pantalla
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -122,7 +184,7 @@ function App() {
           ref={(el) => (sectionRefs.current["inicio"] = el)}
           className="section hero"
         >
-          <p className="subtitle">EN LA RUTA DE SER UN DESARROLLADOR</p>
+          <p className="subtitle typing" id="typing-text"></p>
 
           <h1 className="hero-title">
             <span className="name-first">DIEGO</span>{" "}
@@ -149,14 +211,18 @@ function App() {
               <span className="copy-email-feedback">¡Copiado!</span>
             )}
           </p>
-
-          <button className="primary-button">Descarga mi CV</button>
-
+          <a
+              href={cvdiego}
+              download="cvDIEGOVALENTINI.pdf"
+              className="primary-button"
+            >
+              Descarga mi CV
+           </a>
           <div className="socials">
-            <a href="#" className="social-circle">
+            <a href="https://www.linkedin.com/in/diegovalentini" target="_blank" rel="noopener noreferrer" className="social-circle">
               in
             </a>
-            <a href="#" className="social-circle">
+            <a href="https://github.com/diegovalentini" target="_blank" rel="noopener noreferrer" className="social-circle">
               <img src={githubIcon} className="git-icon"
               />
             </a>
