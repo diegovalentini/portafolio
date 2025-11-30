@@ -545,6 +545,15 @@ body {
     justify-content: center;
     gap: 10px;
   }
+  .git-icon {
+    width: auto;
+    height: auto;
+  }
+  
+  .social-circle {
+    width: auto;
+    height: auto;
+  }
 
   .avatar {
     margin-bottom: 0;
