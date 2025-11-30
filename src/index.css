@@ -25,6 +25,7 @@ body,
   margin: 0;
   padding: 0;
   height: 100%;
+
 }
 
 body {
@@ -78,7 +79,8 @@ body {
 .sidebar-nav ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 25px 0;
+  margin-left: 20px;
   width: 100%;
 }
 
@@ -246,7 +248,7 @@ body {
   padding: 80px 0;
   max-width: 1000px;
   margin-bottom: 500px;
-  margin-left: 100px;
+  margin-left: 50px;
 }
 
 .section-title {
@@ -422,14 +424,14 @@ body {
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.35);
   transition: transform 0.14s ease, box-shadow 0.14s ease,
     filter 0.14s ease;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .project-link-circle:hover {
   transform: translateY(-2px);
   filter: brightness(1.05);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  background-color:#3bb90a;
+  background-color:#ace218;
   scale: 1.5;
 }
 .project-link-icon {
@@ -528,13 +530,14 @@ body {
     flex-direction: column;
     min-height: 100vh;
     position:relative;
+    display: flex;
   }
 
   .sidebar {
     position: relative;
     width: 100%;
     height: auto;
-    padding: 16px 16px 10px;
+    padding: 1px 16px 10px;
     background: var(--bg-sidebar);
     display: flex;
     flex-direction: column;
@@ -545,6 +548,7 @@ body {
 
   .avatar {
     margin-bottom: 0;
+    margin-top: 10px;
   }
 
   .sidebar-nav {
@@ -568,10 +572,12 @@ body {
   .main {
     padding: 10px 14px 32px;
     position:relative;
+    align-items: start;
   }
   .section {
     position: relative;
     text-align: start;
+    margin-bottom: 50px;
   }
   .hero {
     max-width: 100%;
@@ -623,27 +629,42 @@ body {
   .portfolio-grid {
     grid-template-columns: 1fr;
     gap: 24px;
-  }
+    margin: 32px 32px 0 0;
+    align-items: center;
+  } 
 
   .project-card {
     min-height: 0;
   }
 
   .lang-switch {
-    position: absolute;
+    position: fixed;
     top: 12px;
     right: 16px;
     z-index: 100;
   }
+  .section-title{
+    font-size: 50px;
+  }
   .section-text {
-    font-size: 15px;
+    font-size: 12px;
     text-align:justify;
+    width: 280px;
   }
   .section-text2 {
-    font-size: 15px;
+    font-size: 12px;
     text-align:justify;
-    width: 300px;
+    width: 280px;
   }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    
+  }
+  
+  
 }
 /* ==== SKILLS ==== */
 

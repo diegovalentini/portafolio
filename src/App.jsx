@@ -22,7 +22,6 @@ const SECTIONS = [
   { id: "inicio", key: "inicio" },
   { id: "sobre-mi", key: "sobreMi" },
   { id: "portfolio", key: "portfolio" },
-  { id: "educacion", key: "educacion" },
   { id: "skills", key: "skills" },
 ];
 
@@ -73,7 +72,6 @@ const TEXTS = {
       inicio: "INICIO",
       sobreMi: "SOBRE MÍ",
       portfolio: "PORTFOLIO",
-      educacion: "EDUCACIÓN",
       skills: "SKILLS",
     },
     heroDescription:
@@ -88,9 +86,6 @@ const TEXTS = {
       sobreMiP2:
         "Aunque no cuento con estudios formales ni certificaciones en desarrollo, llevo más de dos años aprendiendo de forma autodidacta, creando sitios web y desarrollando aplicaciones. A lo largo de este camino siempre he sido capaz de resolver los problemas que se presentan, y considero que mi mayor fortaleza es precisamente esa: la capacidad de encontrar soluciones y enfrentar cualquier desafío técnico con determinación.",
       portfolioTitle: "Portfolio",
-      educacionTitle: "Educación",
-      educacionP:
-        "Cursos, bootcamps, aprendizaje autodidacta, YouTube, Udemy, etc.",
       skillsTitle: "Skills",
       skillsP:
         "Tecnologías que manejo: Flutter, Dart, React, Firebase, HTML, CSS, JavaScript, etc.",
@@ -101,7 +96,6 @@ const TEXTS = {
       inicio: "HOME",
       sobreMi: "ABOUT ME",
       portfolio: "PORTFOLIO",
-      educacion: "EDUCATION",
       skills: "SKILLS",
     },
     heroDescription:
@@ -116,9 +110,6 @@ const TEXTS = {
       sobreMiP2:
         "Even though I don't have formal studies or certificates in development, I've been learning on my own for more than two years, building websites and apps. Along this path I've always managed to solve the problems that appear, and I consider my biggest strength to be exactly that: the ability to find solutions and face any technical challenge with determination.",
       portfolioTitle: "Portfolio",
-      educacionTitle: "Education",
-      educacionP:
-        "Courses, bootcamps, self-taught learning, YouTube, Udemy, etc.",
       skillsTitle: "Skills",
       skillsP:
         "Technologies I work with: Flutter, Dart, React, Firebase, HTML, CSS, JavaScript, etc.",
@@ -444,18 +435,6 @@ const handleNavClick = (id) => {
         </section>
         <div className="section-divider"></div>
 
-        {/* EDUCACION */}
-        <section
-          id="educacion"
-          ref={(el) => (sectionRefs.current["educacion"] = el)}
-          className="section"
-        >
-          <h2 className="section-title">
-            {t.sections.educacionTitle}
-          </h2>
-          <p className="section-text">{t.sections.educacionP}</p>
-        </section>
-        <div className="section-divider"></div>
         {/* SKILLS */}
         <section
           id="skills"
