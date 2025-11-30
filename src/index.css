@@ -417,8 +417,8 @@ body {
   align-items: center;
   justify-content: center;
   background: var(--social-bg);
-  color: #fff;
-  font-size: 13px;
+  color: #ffffff;
+  font-size: 18px;
   font-weight: 600;
   text-decoration: none;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.35);
@@ -431,7 +431,7 @@ body {
   transform: translateY(-2px);
   filter: brightness(1.05);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  background-color:#ace218;
+  background-color:#66738abe;
   scale: 1.5;
 }
 .project-link-icon {

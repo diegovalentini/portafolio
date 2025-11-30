@@ -33,6 +33,8 @@ const PROJECTS = [
       "App web para gestionar plazas de parking, tiempos y ocupación en tiempo real, adaptada para móviles.",
     image: Eazul,
     tags: ["flutter", "dart", "firebase", "mobile"],
+    github: "https://github.com/diegovalentini/estacionamiento-azul",
+    demo: "https://estacionamiento-azul.web.app/",
   },
   {
     id: "parking-test",
@@ -334,7 +336,7 @@ const handleNavClick = (id) => {
               rel="noopener noreferrer"
               className="social-circle"
             >
-              IN
+              in
             </a>
             <a
               href="https://github.com/diegovalentini"
@@ -413,7 +415,7 @@ const handleNavClick = (id) => {
                         rel="noreferrer"
                         className="project-link-circle"
                       >
-                        GH
+                        <img src= {githubIcon} alt="Link" className="git-icon" />
                       </a>
                       
                     )}
@@ -424,7 +426,7 @@ const handleNavClick = (id) => {
                         rel="noreferrer"
                         className="project-link-circle"
                       >
-                       <img src={linkIcon} alt="Link" className="project-link-icon" />
+                       🌐
                       </a>
                     )}
                   </div>
