@@ -352,7 +352,7 @@ const handleNavClick = (id) => {
 
           <div className="socials">
             <a
-              href="https://www.linkedin.com/in/diegovalentini"
+              href="http://linkedin.com/in/diego-valentini-3b9953306"
               target="_blank"
               rel="noopener noreferrer"
               className="social-circle"
