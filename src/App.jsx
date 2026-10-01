@@ -29,8 +29,10 @@ const PROJECTS = [
   {
     id: "estacionamiento-azul",
     title: "Estacionamiento Azul",
-    description:
-      "App web para gestionar plazas de parking, tiempos y ocupación en tiempo real, adaptada para móviles.",
+    description: {
+      es: "App web para gestionar plazas de parking, tiempos y ocupación en tiempo real, adaptada para móviles.",
+      en: "Mobile-friendly web app to manage parking spaces, parking times and occupancy in real time.",
+    },
     image: Eazul,
     tags: ["flutter", "dart", "firebase", "mobile"],
     github: "https://github.com/diegovalentini/estacionamiento-azul",
@@ -38,8 +40,10 @@ const PROJECTS = [
   {
     id: "parkingdesk",
     title: "ParkingDesk",
-    description:
-      "Plataforma web para la gestión de estacionamientos, con control de plazas, vehículos, cobros, usuarios y reportes.",
+    description: {
+      es: "Plataforma web para la gestión de estacionamientos, con control de plazas, vehículos, cobros, usuarios y reportes.",
+      en: "Web platform for parking management, with control of spaces, vehicles, payments, users and reports.",
+    },
     image: parkingdesk,
     tags: ["react", "firebase", "javascript"],
     github: "https://github.com/diegovalentini/parkingdesk",
@@ -48,8 +52,10 @@ const PROJECTS = [
   {
     id: "War-Running",
     title: "WarRunning",
-    description:
-      "App de running donde conquistas zonas al completar recorridos. Actualmente en desarrollo.",
+    description: {
+      es: "App de running donde conquistas zonas al completar recorridos. Actualmente en desarrollo.",
+      en: "Running app where you conquer areas by completing routes. Currently in development.",
+    },
     image: warrunning,
     tags: ["flutter", "dart", "firebase"],
   },
@@ -106,6 +112,16 @@ const TEXTS = {
       certificationsTitle: "Certificaciones",
       certificateButton: "VER CERTIFICADO",
       skillsTitle: "Skills",
+      skillsLanguages: "Lenguajes de programación",
+      skillsFrameworks: "Frameworks y librerías",
+      skillsTools: "Software y herramientas",
+      skillsLearning: "Estoy aprendiendo",
+      skillsLearningItems: [
+        "Profundizar en React para front-end.",
+        "Buenas prácticas con Firebase (auth, reglas, Firestore).",
+        "Mejorar diseño de interfaces y UX.",
+        "De a poco, Python.",
+      ],
       skillsP:
         "Tecnologías que manejo: Flutter, Dart, React, Firebase, HTML, CSS, JavaScript, etc.",
     },
@@ -128,11 +144,21 @@ const TEXTS = {
       sobreMiP1:
         "I'm a developer passionate about technology, always focused on learning, improving and building efficient digital solutions. I enjoy turning ideas into functional products and bringing real value through hands-on software development.",
       sobreMiP2:
-        "Even though I don't have formal studies or certificates in development, I've been learning on my own for more than two years, building websites and apps. Along this path I've always managed to solve the problems that appear, and I consider my biggest strength to be exactly that: the ability to find solutions and face any technical challenge with determination.",
+        "Even though I don't have formal studies, I've been learning on my own for more than two years, building websites and apps. Along this path I've always managed to solve the problems that appear, and I consider my biggest strength to be exactly that: the ability to find solutions and face any technical challenge with determination.",
       portfolioTitle: "Projects",
       certificationsTitle: "Certifications",
       certificateButton: "VIEW CERTIFICATE",
       skillsTitle: "Skills",
+      skillsLanguages: "Programming languages",
+      skillsFrameworks: "Frameworks and libraries",
+      skillsTools: "Software and tools",
+      skillsLearning: "Currently learning",
+      skillsLearningItems: [
+        "Deepening my knowledge of React for front-end development.",
+        "Best practices with Firebase (auth, rules, Firestore).",
+        "Improving interface design and UX.",
+        "Learning Python step by step.",
+      ],
       skillsP:
         "Technologies I work with: Flutter, Dart, React, Firebase, HTML, CSS, JavaScript, etc.",
     },
@@ -169,13 +195,14 @@ const handleNavClick = (id) => {
   }
 
   if (el) {
-    // Offset distinto para que PORTFOLIO quede mejor encuadrado
+    // Offset distinto para que Proyectos quede mejor encuadrado
     const baseOffset = 80;
     const portfolioOffset = 40;
 
     const offset = id === "portfolio" ? portfolioOffset : baseOffset;
 
-    const y = el.offsetTop - offset;
+    // Posición en el documento, independiente del contenedor relativo en móvil.
+    const y = el.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({
       top: y < 0 ? 0 : y,
       behavior: "smooth",
@@ -404,7 +431,7 @@ const handleNavClick = (id) => {
                 <div className="project-body">
                   <h3 className="project-title">{project.title}</h3>
                   <p className="project-description">
-                    {project.description}
+                    {project.description[lang]}
                   </p>
 
                 <div className="project-tags">
@@ -503,7 +530,7 @@ const handleNavClick = (id) => {
 
           {/* Lenguajes de programación */}
           <div className="skills-group">
-            <h3 className="skills-subtitle">Lenguajes de programación</h3>
+            <h3 className="skills-subtitle">{t.sections.skillsLanguages}</h3>
             <div className="skills-badges">
               <span className="skill-badge tech-js"><img src={jsIcon} className="skill-icon"/>JavaScript</span>
               <span className="skill-badge tech-html"><img src={htmlIcon} className="skill-icon"/>HTML5</span>
@@ -514,7 +541,7 @@ const handleNavClick = (id) => {
 
           {/* Frameworks y librerías */}
           <div className="skills-group">
-            <h3 className="skills-subtitle">Frameworks y librerías</h3>
+            <h3 className="skills-subtitle">{t.sections.skillsFrameworks}</h3>
             <div className="skills-badges">
               <span className="skill-badge tech-react"><img src={reactIcon} className="skill-icon"/>React</span>
               <span className="skill-badge tech-flutter"><img src={flutterIcon} className="skill-icon"/>Flutter</span>
@@ -523,7 +550,7 @@ const handleNavClick = (id) => {
 
           {/* Software y herramientas */}
           <div className="skills-group">
-            <h3 className="skills-subtitle">Software y herramientas</h3>
+            <h3 className="skills-subtitle">{t.sections.skillsTools}</h3>
             <div className="skills-badges">
               <span className="skill-badge tech-firebase"><img src={firebaseIcon} className="skill-icon"/>Firebase</span>
               <span className="skill-badge skill-tool"><img src={githubIcon} className="skill-icon"/>Git &amp; GitHub</span>
@@ -534,12 +561,11 @@ const handleNavClick = (id) => {
 
           {/* Estoy aprendiendo */}
           <div className="skills-group">
-            <h3 className="skills-subtitle">Estoy aprendiendo</h3>
+            <h3 className="skills-subtitle">{t.sections.skillsLearning}</h3>
             <ul className="skills-learning-list">
-              <li>Profundizar en React para front-end.</li>
-              <li>Buenas prácticas con Firebase (auth, reglas, Firestore).</li>
-              <li>Mejorar diseño de interfaces y UX.</li>
-              <li>De a poco, Python.</li>
+              {t.sections.skillsLearningItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </div>
         </section>
