@@ -4,7 +4,7 @@ import githubIcon from "./assets/github-brands-solid-full.svg";
 import Eazul from "./assets/Eazul.png";
 import pkweb from "./assets/pkweb.png";
 import warrunning from "./assets/warrunning.png";
-import cvdiego from "./assets/CVDIEGOV2025.pdf";
+import cvdiego from "./assets/CVDIEGO2026act.pdf";
 import avatar from "./assets/avatar.png";
 import htmlIcon from "./assets/icons/html5.png";
 import cssIcon from "./assets/icons/css.png";
