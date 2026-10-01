@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import copyIcon from "./assets/copy-solid-full.svg";
 import githubIcon from "./assets/github-brands-solid-full.svg";
 import Eazul from "./assets/Eazul.png";
-import pkweb from "./assets/pkweb.png";
+import parkingdesk from "./assets/parkingdesk.png";
 import warrunning from "./assets/warrunning.png";
 import cvdiego from "./assets/CVDIEGO2026act.pdf";
 import avatar from "./assets/avatar.png";
@@ -13,7 +13,6 @@ import flutterIcon from "./assets/icons/flutter.svg";
 import dartIcon from "./assets/icons/dart.svg";
 import firebaseIcon from "./assets/icons/firebase.svg";
 import mobileIcon from "./assets/icons/mobile.svg";
-import linkIcon from "./assets/link.svg";
 import figmaIcon from "./assets/icons/Figma.svg";
 import reactIcon from "./assets/icons/react.svg";
 import vscIcon from "./assets/icons/vsc.svg";
@@ -22,6 +21,7 @@ const SECTIONS = [
   { id: "inicio", key: "inicio" },
   { id: "sobre-mi", key: "sobreMi" },
   { id: "portfolio", key: "portfolio" },
+  { id: "certificaciones", key: "certificaciones" },
   { id: "skills", key: "skills" },
 ];
 
@@ -37,14 +37,14 @@ const PROJECTS = [
     demo: "https://estacionamiento-azul.web.app/",
   },
   {
-    id: "parking-test",
-    title: "Parking Web",
+    id: "parkingdesk",
+    title: "ParkingDesk",
     description:
-      "Versión web de Estacionamiento Azul, adaptada para móviles y con algunos cambios en la interfaz.",
-    image: pkweb,
-    tags: ["html", "firebase", "css", "javascript"],
-    github: "https://github.com/diegovalentini/parking-web",
-    demo: "https://parking-azul.web.app/index.html",
+      "Plataforma web para la gestión de estacionamientos, con control de plazas, vehículos, cobros, usuarios y reportes.",
+    image: parkingdesk,
+    tags: ["react", "firebase", "javascript"],
+    github: "https://github.com/diegovalentini/parkingdesk",
+    githubRel: "noopener noreferrer",
   },
   {
     id: "War-Running",
@@ -53,6 +53,21 @@ const PROJECTS = [
       "App de running donde conquistas zonas al completar recorridos. Actualmente en desarrollo.",
     image: warrunning,
     tags: ["flutter", "dart", "firebase"],
+  },
+];
+
+const CERTIFICATIONS = [
+  {
+    id: "freecodecamp-python",
+    title: "Python Developer Certification",
+    issuer: "freeCodeCamp",
+    date: { es: "Octubre 2026", en: "October 2026" },
+    description: {
+      es: "Certificación de aproximadamente 300 horas enfocada en Python, programación orientada a objetos, estructuras de datos, algoritmos y resolución de problemas.",
+      en: "Certification covering approximately 300 hours of training in Python, object-oriented programming, data structures, algorithms and problem solving.",
+    },
+    tags: ["Python", "OOP", "Data Structures", "Algorithms"],
+    url: "https://freecodecamp.org/certification/diegovalentini/python-v9",
   },
 ];
 
@@ -73,7 +88,8 @@ const TEXTS = {
     menu: {
       inicio: "INICIO",
       sobreMi: "SOBRE MÍ",
-      portfolio: "PORTFOLIO",
+      portfolio: "PROYECTOS",
+      certificaciones: "CERTIFICACIONES",
       skills: "SKILLS",
     },
     heroDescription:
@@ -86,8 +102,10 @@ const TEXTS = {
       sobreMiP1:
         "Soy un desarrollador apasionado por la tecnología, con un enfoque constante en aprender, mejorar y crear soluciones digitales eficientes. Me motiva transformar ideas en productos funcionales y aportar valor real mediante el uso de conocimientos prácticos en desarrollo de software.",
       sobreMiP2:
-        "Aunque no cuento con estudios formales ni certificaciones en desarrollo, llevo más de dos años aprendiendo de forma autodidacta, creando sitios web y desarrollando aplicaciones. A lo largo de este camino siempre he sido capaz de resolver los problemas que se presentan, y considero que mi mayor fortaleza es precisamente esa: la capacidad de encontrar soluciones y enfrentar cualquier desafío técnico con determinación.",
-      portfolioTitle: "Portfolio",
+        "Aunque no cuento con estudios formales en desarrollo, llevo más de dos años aprendiendo de forma autodidacta, creando sitios web y desarrollando aplicaciones. A lo largo de este camino siempre he sido capaz de resolver los problemas que se presentan, y considero que mi mayor fortaleza es precisamente esa: la capacidad de encontrar soluciones y enfrentar cualquier desafío técnico con determinación.",
+      portfolioTitle: "Proyectos",
+      certificationsTitle: "Certificaciones",
+      certificateButton: "VER CERTIFICADO",
       skillsTitle: "Skills",
       skillsP:
         "Tecnologías que manejo: Flutter, Dart, React, Firebase, HTML, CSS, JavaScript, etc.",
@@ -97,7 +115,8 @@ const TEXTS = {
     menu: {
       inicio: "HOME",
       sobreMi: "ABOUT ME",
-      portfolio: "PORTFOLIO",
+      portfolio: "PROJECTS",
+      certificaciones: "CERTIFICATIONS",
       skills: "SKILLS",
     },
     heroDescription:
@@ -111,7 +130,9 @@ const TEXTS = {
         "I'm a developer passionate about technology, always focused on learning, improving and building efficient digital solutions. I enjoy turning ideas into functional products and bringing real value through hands-on software development.",
       sobreMiP2:
         "Even though I don't have formal studies or certificates in development, I've been learning on my own for more than two years, building websites and apps. Along this path I've always managed to solve the problems that appear, and I consider my biggest strength to be exactly that: the ability to find solutions and face any technical challenge with determination.",
-      portfolioTitle: "Portfolio",
+      portfolioTitle: "Projects",
+      certificationsTitle: "Certifications",
+      certificateButton: "VIEW CERTIFICATE",
       skillsTitle: "Skills",
       skillsP:
         "Technologies I work with: Flutter, Dart, React, Firebase, HTML, CSS, JavaScript, etc.",
@@ -412,7 +433,7 @@ const handleNavClick = (id) => {
                       <a
                         href={project.github}
                         target="_blank"
-                        rel="noreferrer"
+                        rel={project.githubRel || "noreferrer"}
                         className="project-link-circle"
                       >
                         <img src= {githubIcon} alt="Link" className="git-icon" />
@@ -430,6 +451,42 @@ const handleNavClick = (id) => {
                       </a>
                     )}
                   </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+        <div className="section-divider"></div>
+
+        {/* CERTIFICACIONES */}
+        <section
+          id="certificaciones"
+          ref={(el) => (sectionRefs.current["certificaciones"] = el)}
+          className="section certifications-section"
+        >
+          <h2 className="section-title">{t.sections.certificationsTitle}</h2>
+          <div className="certifications-grid">
+            {CERTIFICATIONS.map((certification) => (
+              <article className="project-card certification-card" key={certification.id}>
+                <div className="project-body">
+                  <h3 className="project-title">{certification.title}</h3>
+                  <p className="project-description certification-meta">
+                    {certification.issuer} · {certification.date[lang]}
+                  </p>
+                  <p className="project-description">{certification.description[lang]}</p>
+                  <div className="project-tags">
+                    {certification.tags.map((tag) => (
+                      <span className="project-tag certification-tag" key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <a
+                    href={certification.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="primary-button certification-link"
+                  >
+                    {t.sections.certificateButton} <span aria-hidden="true">↗</span>
+                  </a>
                 </div>
               </article>
             ))}

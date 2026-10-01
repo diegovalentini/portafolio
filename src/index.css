@@ -675,6 +675,51 @@ body {
   
   
 }
+/* ==== CERTIFICACIONES ==== */
+.certifications-section .section-title {
+  overflow-wrap: anywhere;
+}
+
+.certifications-grid {
+  display: grid;
+  gap: 32px;
+  margin-top: 32px;
+  max-width: 700px;
+}
+
+.certification-card {
+  min-width: 0;
+  min-height: 0;
+  overflow-wrap: anywhere;
+}
+
+.certification-meta {
+  color: var(--accent-yellow);
+}
+
+.certification-tag {
+  background: var(--bg-sidebar);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green);
+  max-width: 100%;
+}
+
+.certification-link {
+  align-self: flex-start;
+  display: inline-block;
+  max-width: 100%;
+  margin-top: 10px;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .certifications-grid {
+    gap: 24px;
+    margin-right: 32px;
+  }
+}
+
 /* ==== SKILLS ==== */
 
 .skills-group {
