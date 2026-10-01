@@ -34,7 +34,6 @@ const PROJECTS = [
     image: Eazul,
     tags: ["flutter", "dart", "firebase", "mobile"],
     github: "https://github.com/diegovalentini/estacionamiento-azul",
-    demo: "https://estacionamiento-azul.web.app/",
   },
   {
     id: "parkingdesk",
