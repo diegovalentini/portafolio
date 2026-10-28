@@ -14,7 +14,7 @@ Este es mi sitio web personal desarrollado con **React**, donde presento mi perf
 ## 🛠️ Tecnologías utilizadas
 
 - **React**
-- **JavaScript (ES6+)**
-- **CSS / Tailwind (si usas)**
+- **JavaScript**
+- **CSS**
 - **Google Fonts**
 - **Git & GitHub**
